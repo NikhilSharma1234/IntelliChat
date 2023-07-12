@@ -12,8 +12,8 @@
   ],
   "content_scripts": [
     {
-      "js": ["contentScript.js"],
-      "matches": ["https://*/*"]
+      "js": ["content.js"],
+      "matches": ["<all_urls>"]
     }
   ],
   "manifest_version": 3
