@@ -8,18 +8,31 @@ function createPopupBox(text) {
     const popupBox = document.createElement('div');
     popupBox.setAttribute('id', 'popupBox');
 
-    const closeButton = document.createElement('div');
-    closeButton.textContent = 'x';
-    closeButton.style.position = 'absolute';
-    closeButton.style.top = '4px';
-    closeButton.style.right = '4px';
-    closeButton.style.cursor = 'pointer';
-    closeButton.addEventListener('click', removePopupBox);
-    popupBox.appendChild(closeButton);
+    // Logo
+    const logo = document.createElement('img');
+    logo.setAttribute('id', 'loader-logo');
+    logo.src = chrome.runtime.getURL("images/intelli_dark_transparent.png");
 
-    const content = document.createElement('div');
-    content.textContent = text;
-    popupBox.appendChild(content);
+    // Loader
+    const loader = document.createElement('div');
+    loader.setAttribute('id', 'html-spinner');
+
+    // Close Button
+    const closeButtonOuter = document.createElement('div');
+    closeButtonOuter.setAttribute('class', 'outer');
+    const closeButtonInner = document.createElement('div');
+    closeButtonInner.setAttribute('class', 'inner');
+    const label = document.createElement('LABEL');
+    label.textContent = 'Close' 
+    closeButtonInner.appendChild(label);
+    closeButtonOuter.appendChild(closeButtonInner);
+
+    closeButtonOuter.addEventListener('click', removePopupBox);
+    popupBox.appendChild(closeButtonOuter);
+
+
+    popupBox.appendChild(logo);
+    popupBox.appendChild(loader);
     document.body.appendChild(popupBox);
 }
 

@@ -1,12 +1,137 @@
 #popupBox {
     position: absolute;
-    top: 30px;
+    top: 0px;
     right: 200px;
-    background-color: blue;
-    border: 4px solid black;
+    background-color: #F5F3F0;
+    border: 1px solid #AAAAAA;
     box-shadow: 30px rgba(0, 0, 0, 0.5);
     z-index: 9999;
     width: 400px;
     height: 200px;
-    display: block;
+    font-family: 'Open Sans', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    color:#393D3D;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    animation: fadeIn 1.5s;
+    border-radius: 5px;
+}
+
+@keyframes fadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+}
+
+#loader-logo {
+    width: 175px;
+    height: auto;
+    margin-bottom: 30px;;
+}
+  
+
+#html-spinner{
+    width:40px;
+    height:40px;
+    border:4px solid #0A0C0F;
+    border-top:4px solid white;
+    border-radius:50%;
+}
+
+#html-spinner {
+    -webkit-transition-property: -webkit-transform;
+    -webkit-transition-duration: 1.2s;
+    -webkit-animation-name: rotate;
+    -webkit-animation-iteration-count: infinite;
+    -webkit-animation-timing-function: linear;
+
+    -moz-transition-property: -moz-transform;
+    -moz-animation-name: rotate; 
+    -moz-animation-duration: 1.2s; 
+    -moz-animation-iteration-count: infinite;
+    -moz-animation-timing-function: linear;
+
+    transition-property: transform;
+    animation-name: rotate; 
+    animation-duration: 1.2s; 
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+}
+
+@-webkit-keyframes rotate {
+    from {-webkit-transform: rotate(0deg);}
+    to {-webkit-transform: rotate(360deg);}
+}
+
+@-moz-keyframes rotate {
+    from {-moz-transform: rotate(0deg);}
+    to {-moz-transform: rotate(360deg);}
+}
+
+@keyframes rotate {
+    from {transform: rotate(0deg);}
+    to {transform: rotate(360deg);}
+}
+
+/* Close Button Styling */
+
+.outer {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    width: 20px;
+    cursor: pointer;
+}
+
+.inner {
+    width: inherit;
+    text-align: center;
+}
+
+label { 
+    font-size: .5em; 
+    line-height: 3em;
+    text-transform: uppercase;
+    color: black;
+    transition: all .3s ease-in;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.inner:before, .inner:after {
+    position: absolute;
+    content: '';
+    height: 1px;
+    width: inherit;
+    background: black;
+    left: 0;
+    transition: all .3s ease-in;
+}
+
+.inner:before {
+    top: 50%; 
+    transform: rotate(45deg);  
+}
+
+.inner:after {  
+    bottom: 50%;
+    transform: rotate(-45deg);  
+}
+
+.outer:hover label {
+    opacity: 1;
+}
+
+.outer:hover .inner:before,
+.outer:hover .inner:after {
+    transform: rotate(0);
+}
+
+.outer:hover .inner:before {
+    top: 0;
+}
+
+.outer:hover .inner:after {
+    bottom: 0;
 }
