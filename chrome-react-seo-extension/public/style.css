@@ -1,13 +1,13 @@
 #popupBox {
-    position: absolute;
-    top: 0px;
-    right: 200px;
-    background-color: #F5F3F0;
-    border: 1px solid #AAAAAA;
+    position: fixed;
+    top: 3vh;
+    right: 3vh;
+    background-color: #FFFFFF;
+    border: 2px solid #000000;
     box-shadow: 30px rgba(0, 0, 0, 0.5);
     z-index: 9999;
     width: 400px;
-    height: 200px;
+    height: 600px;
     font-family: 'Open Sans', sans-serif;
     -webkit-font-smoothing: antialiased;
     color:#393D3D;
