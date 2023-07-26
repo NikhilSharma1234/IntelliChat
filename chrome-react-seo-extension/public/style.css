@@ -1,13 +1,11 @@
 #popupBox {
-    position: absolute;
-    top: 0px;
-    right: 200px;
-    background-color: #F5F3F0;
+    position: fixed;
+    top: 3vh;
+    right: 3vh;
+    background-color: #FFFFFF;
     border: 1px solid #AAAAAA;
     box-shadow: 30px rgba(0, 0, 0, 0.5);
     z-index: 9999;
-    width: 400px;
-    height: 200px;
     font-family: 'Open Sans', sans-serif;
     -webkit-font-smoothing: antialiased;
     color:#393D3D;
@@ -134,4 +132,19 @@ label {
 
 .outer:hover .inner:after {
     bottom: 0;
+}
+
+
+.link {
+    border-bottom-width: 0;
+    background-image: linear-gradient(90deg, transparent, transparent), linear-gradient(90deg, #FFFFFF, #277EFF);
+    background-size: 0 3px;
+    background-position: 0 100%;
+    background-repeat: no-repeat;
+    transition: background-size .5s ease-in-out;
+}
+
+.link:hover {
+    background-size: 100% 3px;
+    background-position: 0 100%
 }
