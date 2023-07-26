@@ -12,9 +12,9 @@
     "contextMenus"
   ],
   "icons": {
-    "16": "images/intelli16.png",
-    "32": "images/intelli32.png",
-    "48": "images/intelli48.png"
+    "16": "images/intelli16_v1.png",
+    "32": "images/intelli32_v1.png",
+    "48": "images/intelli48_v2.png"
   },
   "content_scripts": [
     {

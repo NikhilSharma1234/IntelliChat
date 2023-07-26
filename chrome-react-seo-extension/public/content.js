@@ -11,7 +11,7 @@ function createPopupBox(text) {
     // Logo
     const logo = document.createElement('img');
     logo.setAttribute('id', 'loader-logo');
-    logo.src = chrome.runtime.getURL("images/intelli_dark_transparent.png");
+    logo.src = chrome.runtime.getURL("images/intelli.png");
 
     // Loader
     const loader = document.createElement('div');
