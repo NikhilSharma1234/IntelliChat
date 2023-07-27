@@ -74,18 +74,21 @@ async function updateChat(event, text) {
     switch (event) {
         case 'define':
             text_response = await fetchTextResponse(`What does this mean: ${text}`);
-            popupBox.insertAdjacentHTML('afterbegin', `<div>${text_response}<div/>`);           
             break;
         case 'summarize':
             text_response = await fetchTextResponse(`Summarize this: ${text}`);
-            popupBox.insertAdjacentHTML('afterbegin', `<div>${text_response}<div/>`);
             break;
         case 'learnmore':
             text_response = await fetchTextResponse(`What does this mean: ${text}`);
-            popupBox.insertAdjacentHTML('afterbegin', `<div>${text_response}<div/>`);
             break;
         default:
             throw "err"
+    }
+
+    if (text_response) {
+        popupBox.insertAdjacentHTML('afterbegin', `<div>${text_response}<div/>`);
+    } else {
+        popupBox.insertAdjacentHTML('afterbegin', `<div>Failed to fetch data.</div>`);
     }
 }
 
