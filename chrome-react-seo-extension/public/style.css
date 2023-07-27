@@ -3,8 +3,9 @@
     top: 3vh;
     right: 3vh;
     background-color: #FFFFFF;
-    border: 1px solid #AAAAAA;
-    box-shadow: 30px rgba(0, 0, 0, 0.5);
+    max-height: 65%;
+    max-width:  25%;
+    box-shadow: .5em rgba(0, 0, 0, 0.5);
     z-index: 999999999;
     font-family: 'Open Sans', sans-serif;
     -webkit-font-smoothing: antialiased;
@@ -147,4 +148,37 @@ label {
 .link:hover {
     background-size: 100% 3px;
     background-position: 0 100%
+}
+
+ul#popupWindow {
+    max-height: 15vh;
+}
+
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+/* Track (gray background) */
+::-webkit-scrollbar-track {
+    background-color: transparent;
+}
+
+/* Thumb (gray handle) */
+::-webkit-scrollbar-thumb {
+    background-color: rgba(128, 128, 128, 0.5);
+    border-radius: 4px;
+}
+
+@media (min-width: 1024px) {
+    ul#popupWindow {
+        max-height: 40vh;
+        margin-top: -12vh;
+    }
+}
+
+@media (min-width: 768px) {
+    ul#popupWindow {
+        max-height: 25vh;
+        margin-top: -8vh;
+    }
 }

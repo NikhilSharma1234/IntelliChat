@@ -69,7 +69,7 @@ async function fetchTextResponse(query) {
 }  
 
 async function updateChat(event, text) {
-    const popupBox = document.getElementById('popupBox');
+    const popupWindow = document.getElementById('popupWindow');
     let text_response;
     switch (event) {
         case 'define':
@@ -86,9 +86,9 @@ async function updateChat(event, text) {
     }
 
     if (text_response) {
-        popupBox.insertAdjacentHTML('afterbegin', `<div>${text_response}<div/>`);
+        popupWindow.insertAdjacentHTML('afterbegin', `<li class="font-xs border-[#AAAAAA] border-2 rounded-lg p-2">${text_response}<li/>`);
     } else {
-        popupBox.insertAdjacentHTML('afterbegin', `<div>Failed to fetch data.</div>`);
+        popupWindow.insertAdjacentHTML('afterbegin', `<li>Failed to fetch data.</li>`);
     }
 }
 

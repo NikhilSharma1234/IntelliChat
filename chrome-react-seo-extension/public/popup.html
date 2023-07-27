@@ -1,16 +1,24 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-    <title>Document</title>
-</head>
-<body id="popupBody">
-    <div id="buttonsWrapper" class="min-w-[20vh] flex space-x-3">
-        <button id="define" class="bg-blue-300 px-4 py-2 rounded-lg font-bold"><span class="link">Define</span></button>
-        <button id="summarize" class="bg-blue-300 px-4 py-2 rounded-lg font-bold"><span class="link">Summarize</span></button>
-        <button id="learnmore" class="bg-blue-300 px-4 py-2 rounded-lg font-bold"><span class="link">Learn More</span></button>
-    </div>
-</body>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+        <title>IntelliChat</title>
+    </head>
+    <body id="popupBody" class="min-w-[20vh] bg-gray-200 flex justify-center items-center">
+        <img class="w-1/2 h-1/2" src="https://intellichat.s3.us-west-1.amazonaws.com/images/intelli.png" alt="IntelliChat">
+
+        <div class="p-8 bg-white rounded-lg shadow-lg">
+            <!-- Popup Window -->
+            <ul id="popupWindow" class="sm:p-4 md:p-8 lg:p-12 p-2 rounded-xl bg-gray-300 overflow-y-auto"></ul>
+            
+            <!-- Buttons at the bottom -->
+            <div id="buttonsWrapper" class="flex justify-center mt-4 space-x-5">
+                <button id="define"    class="bg-[#277EFF] px-4 py-2 rounded-lg font-bold link opacity-50 hover:opacity-100 duration-300 block">Define</button>
+                <button id="summarize" class="bg-[#277EFF] px-4 py-2 rounded-lg font-bold link opacity-50 hover:opacity-100 duration-300 md:block hidden">Summarize</button>
+                <button id="learnmore" class="bg-[#277EFF] px-4 py-2 rounded-lg font-bold link opacity-50 hover:opacity-100 duration-300 lg:block hidden">Learn</button>
+            </div>
+        </div>
+    </body>
 </html>
