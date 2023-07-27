@@ -16,7 +16,11 @@ function removePopupBox(text) {
 
 function scrollToBottom() {
     const popupWindow = document.getElementById('popupWindow');
-    popupWindow.scrollTop = popupWindow.scrollHeight;
+    const lastChild = popupWindow.lastElementChild;
+
+    if (lastChild) {
+        lastChild.scrollIntoView({ behavior: 'smooth' });
+    }
 }
 
 async function createPopupBox(text) {
