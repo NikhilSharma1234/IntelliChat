@@ -55,7 +55,7 @@ async function createPopupBox(text) {
             popupWindow.insertAdjacentHTML('afterend', `<div class="font-bold opacity-50 mb-[-4vh]">${halfText}</div>`);
             defineButton?.addEventListener('click', () => updateChat('define', text));
             summarizeButton?.addEventListener('click', () => updateChat('summarize', text));
-            learnMoreButton?.addEventListener('click', () => updateChat('learnmore', text));
+            learnMoreButton?.addEventListener('click', () => updateChat('learn', text));
         }
     });
     
@@ -102,8 +102,8 @@ async function updateChat(event, text) {
         case 'summarize':
             text_response = await fetchTextResponse(`Summarize this: ${text}`);
             break;
-        case 'learnmore':
-            text_response = await fetchTextResponse(`What does this mean: ${text}`);
+        case 'learn':
+            text_response = await fetchTextResponse(`Give me links regards this: ${text}`);
             break;
         default:
             throw "err"
