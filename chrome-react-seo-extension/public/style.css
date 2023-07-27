@@ -5,7 +5,7 @@
     background-color: #FFFFFF;
     max-height: 65%;
     max-width:  25%;
-    box-shadow: .5em rgba(0, 0, 0, 0.5);
+    box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
     z-index: 999999999;
     font-family: 'Open Sans', sans-serif;
     -webkit-font-smoothing: antialiased;
@@ -172,13 +172,13 @@ ul#popupWindow {
 @media (min-width: 1024px) {
     ul#popupWindow {
         max-height: 40vh;
-        margin-top: -12vh;
+        padding: 6rem;
     }
 }
 
 @media (min-width: 768px) {
     ul#popupWindow {
         max-height: 25vh;
-        margin-top: -8vh;
+        padding: 4rem;
     }
 }
