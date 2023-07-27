@@ -14,6 +14,11 @@ function removePopupBox(text) {
     }
 }
 
+function scrollToBottom() {
+    const popupWindow = document.getElementById('popupWindow');
+    popupWindow.scrollTop = popupWindow.scrollHeight;
+}
+
 async function createPopupBox(text) {
     const existingPopupBox = document.getElementById('popupBox');
 
@@ -35,6 +40,15 @@ async function createPopupBox(text) {
             const summarizeButton = buttonsWrapper.querySelector('#summarize');
             const learnMoreButton = buttonsWrapper.querySelector('#learnmore');
 
+            let halfText;
+            if (text.length > 20) {
+                halfText = 'Selected: ' + text.slice(0, 20) + '...';
+            } else {
+                halfText = 'Selected: ' + text;
+            }
+
+            const popupWindow = document.getElementById('popupWindow');
+            popupWindow.insertAdjacentHTML('afterend', `<div class="font-bold opacity-50 mb-[-4vh]">${halfText}</div>`);
             defineButton?.addEventListener('click', () => updateChat('define', text));
             summarizeButton?.addEventListener('click', () => updateChat('summarize', text));
             learnMoreButton?.addEventListener('click', () => updateChat('learnmore', text));
@@ -70,6 +84,12 @@ async function fetchTextResponse(query) {
 
 async function updateChat(event, text) {
     const popupWindow = document.getElementById('popupWindow');
+    const capitalizedEvent = event.charAt(0).toUpperCase() + event.slice(1)
+    if (popupWindow.classList.contains('hidden')) {
+        popupWindow.classList.remove('hidden'); // Remove hidden class, now that there are messages.
+    }
+    popupWindow.insertAdjacentHTML('beforeend', `<div class="chat-item chat-item-left"><div class="font-xs chat-bubble chat-bubble-blue rounded-lg p-2">${capitalizedEvent}</div></div>`);
+    scrollToBottom();
     let text_response;
     switch (event) {
         case 'define':
@@ -84,12 +104,13 @@ async function updateChat(event, text) {
         default:
             throw "err"
     }
-
+    
     if (text_response) {
-        popupWindow.insertAdjacentHTML('afterbegin', `<li class="font-xs border-[#AAAAAA] border-2 rounded-lg p-2">${text_response}<li/>`);
+        popupWindow.insertAdjacentHTML('beforeend', `<div class="chat-item chat-item-right"><div class="font-xs chat-bubble chat-bubble-gray rounded-lg p-2">${text_response}</div></div>`);
     } else {
-        popupWindow.insertAdjacentHTML('afterbegin', `<li>Failed to fetch data.</li>`);
+        popupWindow.insertAdjacentHTML('beforeend', `<div class="chat-item chat-item-right"><div class="font-xs chat-bubble chat-bubble-gray rounded-lg p-2">Failed to fetch data.</div></div>`);
     }
+    scrollToBottom();
 }
 
 document.addEventListener('keydown', async function(event) {
