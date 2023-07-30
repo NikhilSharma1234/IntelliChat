@@ -1,84 +1,135 @@
-function createPopupBox(text, x, y) {
+function removePopupBox(text) {
+    const existingPopupBox = document.getElementById('popupBox');
+
+    if (existingPopupBox) {
+        existingPopupBox.parentNode.removeChild(existingPopupBox);
+
+        const elements = ['define', 'learnmore', 'summarize'];
+        for (const elementId of elements) {
+            const elem = document.getElementById(elementId);
+            if (elem) {
+                elem.removeEventListener('click', () => updateChat(elementId, text));
+            }
+        }
+    }
+}
+
+function scrollToBottom() {
+    const popupWindow = document.getElementById('popupWindow');
+    const lastChild = popupWindow.lastElementChild;
+
+    if (lastChild) {
+        lastChild.scrollIntoView({ behavior: 'smooth' });
+    }
+}
+
+async function createPopupBox(text) {
     const existingPopupBox = document.getElementById('popupBox');
 
     if (existingPopupBox) {
         existingPopupBox.parentNode.removeChild(existingPopupBox);
     }
-
+    
     const popupBox = document.createElement('div');
     popupBox.setAttribute('id', 'popupBox');
 
-    const closeButton = document.createElement('div');
-    closeButton.textContent = 'x';
-    closeButton.style.position = 'absolute';
-    closeButton.style.top = '4px';
-    closeButton.style.right = '4px';
-    closeButton.style.cursor = 'pointer';
-    closeButton.addEventListener('click', removePopupBox);
-    popupBox.appendChild(closeButton);
+    fetch(chrome.runtime.getURL('/popup.html'))
+    .then(r => r.text())
+    .then(html => {
+        popupBox.insertAdjacentHTML('beforeend', html);
 
-    const content = document.createElement('div');
-    content.textContent = text;
-    popupBox.appendChild(content);
+        const buttonsWrapper = popupBox.querySelector('#buttonsWrapper');
+        if (buttonsWrapper) {
+            const defineButton = buttonsWrapper.querySelector('#define');
+            const summarizeButton = buttonsWrapper.querySelector('#summarize');
+            const learnMoreButton = buttonsWrapper.querySelector('#learnmore');
 
-    popupBox.style.position = 'fixed';
-    popupBox.style.top = `${y}px`;
-    popupBox.style.left = `${x}px`;
-    popupBox.style.backgroundColor = 'white';
-    popupBox.style.border = '4px solid black';
-    popupBox.style.boxShadow = '0 2px 4px rgba(0, 0, 0, 0.5)';
-    popupBox.style.zIndex = '9999';
+            let halfText;
+            if (text.length > 20) {
+                halfText = 'Selected: ' + text.slice(0, 20) + '...';
+            } else {
+                halfText = 'Selected: ' + text;
+            }
+
+            const popupWindow = document.getElementById('popupWindow');
+            popupWindow.insertAdjacentHTML('afterend', `<div class="font-bold opacity-50 mb-[-4vh]">${halfText}</div>`);
+            defineButton?.addEventListener('click', () => updateChat('define', text));
+            summarizeButton?.addEventListener('click', () => updateChat('summarize', text));
+            learnMoreButton?.addEventListener('click', () => updateChat('learn', text));
+        }
+    });
+    
     document.body.appendChild(popupBox);
 }
 
-function removePopupBox() {
-  if (popupBox) {
-    popupBox.parentNode.removeChild(popupBox);
-    popupBox = null;
-  }
-}
-
-window.addEventListener('scroll', updatePopupBoxPosition);
-
-function updatePopupBoxPosition() {
-    const popupBox = document.getElementById('popupBox');
-
-    if (popupBox) {
-        const boundingRect = popupBox.getBoundingClientRect();
-        const scrolledX = boundingRect.left + window.scrollX;
-        const scrolledY = boundingRect.top + window.scrollY;
-        popupBox.style.left = `${scrolledX}px`;
-        popupBox.style.top = `${scrolledY}px`;
+async function fetchTextResponse(query) {
+    const url = `https://justcors.com/tl_763c4ef/https://xse8e5ol9f.execute-api.us-east-1.amazonaws.com/prod?query=${encodeURIComponent(query)}`;
+    const apiKey = 'MXEbAK9Js81dzRGHKnJVd6rmmJqTADyv4OiARqoG'; // eventually change to something more secure...
+    try {
+      const response = await fetch(url, {
+        method: 'GET',
+        mode: 'cors',
+        headers: {
+          'x-api-key': apiKey,
+        },
+      });
+      
+      if (!response.ok) {
+        throw new Error('Network response was not ok.');
+      }
+      
+      const text_response = await response.json();
+      return text_response;
+    } catch (error) {
+      console.error('Error fetching data:', error);
+      return null;
     }
-}
+}  
 
-function removePopupBox() {
-    const existingPopupBox = document.getElementById('popupBox');
-
-    if (existingPopupBox) {
-        existingPopupBox.parentNode.removeChild(existingPopupBox);
+async function updateChat(event, text) {
+    const popupWindow = document.getElementById('popupWindow');
+    const capitalizedEvent = event.charAt(0).toUpperCase() + event.slice(1)
+    if (popupWindow.classList.contains('hidden')) {
+        popupWindow.classList.remove('hidden'); // Remove hidden class, now that there are messages.
     }
+    popupWindow.insertAdjacentHTML('beforeend', `<div class="chat-item chat-item-left"><div class="font-xs chat-bubble chat-bubble-blue rounded-lg p-2">${capitalizedEvent}</div></div>`);
+    scrollToBottom();
+    let text_response;
+    switch (event) {
+        case 'define':
+            text_response = await fetchTextResponse(`What does this mean: ${text}`);
+            break;
+        case 'summarize':
+            text_response = await fetchTextResponse(`Summarize this: ${text}`);
+            break;
+        case 'learn':
+            text_response = await fetchTextResponse(`Give me links regards this: ${text}`);
+            break;
+        default:
+            throw "err"
+    }
+    
+    if (text_response) {
+        popupWindow.insertAdjacentHTML('beforeend', `<div class="chat-item chat-item-right"><div class="font-xs chat-bubble chat-bubble-gray rounded-lg p-2">${text_response}</div></div>`);
+    } else {
+        popupWindow.insertAdjacentHTML('beforeend', `<div class="chat-item chat-item-right"><div class="font-xs chat-bubble chat-bubble-gray rounded-lg p-2">Failed to fetch data.</div></div>`);
+    }
+    scrollToBottom();
 }
 
-document.addEventListener('keydown', function(event) {
+document.addEventListener('keydown', async function(event) {
     if (event.ctrlKey && event.shiftKey && event.key === 'X') {
         let text = window.getSelection().toString().trim();
-
+    
         if (text.length > 0) {
-            const lastRangeIndex = window.getSelection().rangeCount - 1;
-            const lastRange = window.getSelection().getRangeAt(lastRangeIndex);
-            const rect = lastRange.getBoundingClientRect();
-            const x = rect.left;
-            const y = rect.bottom;
-
-            createPopupBox(text, x, y);
+            await createPopupBox(text);
             try {
                 chrome.runtime.sendMessage({ action: 'showText', text: text });
             } catch {
                 return
             }
         } else {
-            removePopupBox();
+            removePopupBox(text);
         }
     }
 });

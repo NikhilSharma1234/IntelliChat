@@ -1,0 +1,223 @@
+#popupBox {
+    position: fixed;
+    top: 3vh;
+    right: 3vh;
+    background-color: #FFFFFF;
+    max-height: 65%;
+    max-width:  25%;
+    box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+    z-index: 999999999;
+    font-family: 'Open Sans', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    color:#393D3D;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    animation: fadeIn 1.5s;
+    border-radius: 5px;
+}
+
+@keyframes fadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+}
+
+#loader-logo {
+    width: 175px;
+    height: auto;
+    margin-bottom: 30px;;
+}
+  
+
+#html-spinner{
+    width:40px;
+    height:40px;
+    border:4px solid #0A0C0F;
+    border-top:4px solid white;
+    border-radius:50%;
+}
+
+#html-spinner {
+    -webkit-transition-property: -webkit-transform;
+    -webkit-transition-duration: 1.2s;
+    -webkit-animation-name: rotate;
+    -webkit-animation-iteration-count: infinite;
+    -webkit-animation-timing-function: linear;
+
+    -moz-transition-property: -moz-transform;
+    -moz-animation-name: rotate; 
+    -moz-animation-duration: 1.2s; 
+    -moz-animation-iteration-count: infinite;
+    -moz-animation-timing-function: linear;
+
+    transition-property: transform;
+    animation-name: rotate; 
+    animation-duration: 1.2s; 
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+}
+
+@-webkit-keyframes rotate {
+    from {-webkit-transform: rotate(0deg);}
+    to {-webkit-transform: rotate(360deg);}
+}
+
+@-moz-keyframes rotate {
+    from {-moz-transform: rotate(0deg);}
+    to {-moz-transform: rotate(360deg);}
+}
+
+@keyframes rotate {
+    from {transform: rotate(0deg);}
+    to {transform: rotate(360deg);}
+}
+
+/* Close Button Styling */
+
+.outer {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    width: 20px;
+    cursor: pointer;
+}
+
+.inner {
+    width: inherit;
+    text-align: center;
+}
+
+label { 
+    font-size: .5em; 
+    line-height: 3em;
+    text-transform: uppercase;
+    color: black;
+    transition: all .3s ease-in;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.inner:before, .inner:after {
+    position: absolute;
+    content: '';
+    height: 1px;
+    width: inherit;
+    background: black;
+    left: 0;
+    transition: all .3s ease-in;
+}
+
+.inner:before {
+    top: 50%; 
+    transform: rotate(45deg);  
+}
+
+.inner:after {  
+    bottom: 50%;
+    transform: rotate(-45deg);  
+}
+
+.outer:hover label {
+    opacity: 1;
+}
+
+.outer:hover .inner:before,
+.outer:hover .inner:after {
+    transform: rotate(0);
+}
+
+.outer:hover .inner:before {
+    top: 0;
+}
+
+.outer:hover .inner:after {
+    bottom: 0;
+}
+
+
+.link {
+    border-bottom-width: 0;
+    background-image: linear-gradient(90deg, transparent, transparent), linear-gradient(90deg, #FFFFFF, #277EFF);
+    background-size: 0 3px;
+    background-position: 0 100%;
+    background-repeat: no-repeat;
+    transition: background-size .5s ease-in-out;
+}
+
+.link:hover {
+    background-size: 100% 3px;
+    background-position: 0 100%
+}
+
+ul#popupWindow {
+    max-height: 15vh;
+}
+
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+/* Track (gray background) */
+::-webkit-scrollbar-track {
+    background-color: transparent;
+}
+
+/* Thumb (gray handle) */
+::-webkit-scrollbar-thumb {
+    background-color: rgba(128, 128, 128, 0.5);
+    border-radius: 4px;
+}
+
+@media (min-width: 1024px) {
+    ul#popupWindow {
+        max-height: 40vh;
+        padding: 6rem;
+    }
+}
+
+@media (min-width: 768px) {
+    ul#popupWindow {
+        max-height: 25vh;
+        padding: 4rem;
+    }
+}
+
+.chat-box {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding: 1rem;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+.chat-item {
+    display: flex;
+    align-items: center;
+}
+
+.chat-item-left {
+    justify-content: flex-start;
+}
+
+.chat-item-right {
+    justify-content: flex-end;
+}
+
+.chat-bubble {
+    padding: 0.75rem 1rem;
+    border-radius: 8px;
+    max-width: 80%;
+}
+
+.chat-bubble-blue {
+    background-color: #277EFF;
+    color: #FFFFFF;
+}
+
+.chat-bubble-gray {
+    background-color: #CCCCCC;
+}

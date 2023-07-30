@@ -8,12 +8,25 @@
   "permissions": [
     "scripting",
     "activeTab",
-    "tabs"
+    "tabs",
+    "contextMenus"
   ],
+  "icons": {
+    "16": "images/intelli16_v1.png",
+    "32": "images/intelli32_v1.png",
+    "48": "images/intelli48_v2.png"
+  },
   "content_scripts": [
     {
       "js": ["content.js"],
-      "matches": ["<all_urls>"]
+      "matches": ["<all_urls>"],
+      "css": ["style.css"]
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": ["/images/*", "popup.html"],
+      "matches": ["http://*/*", "https://*/*"]
     }
   ],
   "manifest_version": 3
