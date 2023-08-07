@@ -1,7 +1,16 @@
 {
-  "name": "IntelliChat",
+  "name": "__MSG_namechrome__",
   "version": "1.0",
-  "description": "Intelligent Chatbot Assistant",
+  "description": "__MSG_description__",
+  "default_locale": "en",
+  "action": {
+    "default_title": "__MSG_name__",
+    "default_icon": {
+      "16": "images/intelli16_v1.png",
+      "32": "images/intelli32_v1.png",
+      "48": "images/intelli48_v2.png"
+    }
+  },
   "background": {
     "service_worker": "background.js"
   },
