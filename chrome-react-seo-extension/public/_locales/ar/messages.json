@@ -1,0 +1,26 @@
+{
+    "namechrome": {
+        "message": "إنتيليشات",
+        "description": "اسم الإضافة."
+    },
+    "appdescription": {
+        "message": "روبوت محادثة ذكي.",
+        "description": "وصف الإضافة، المعروض في متجر الويب."
+    },
+    "define": {
+        "message": "تعريف",
+        "description": "تعريف المجال."
+    },
+    "summarize": {
+        "message": "تلخيص",
+        "description": "تلخيص المجال."
+    },
+    "learn": {
+        "message": "تعلم",
+        "description": "زر التعلم."
+    },
+    "error": {
+        "message": "فشل الاسترجاع",
+        "description": "رسالة خطأ."
+    }
+}

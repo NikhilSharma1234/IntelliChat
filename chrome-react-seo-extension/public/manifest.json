@@ -1,10 +1,9 @@
 {
   "name": "__MSG_namechrome__",
   "version": "1.0",
-  "description": "__MSG_description__",
+  "description": "__MSG_appdescription__",
   "default_locale": "en",
   "action": {
-    "default_title": "__MSG_name__",
     "default_icon": {
       "16": "images/intelli16_v1.png",
       "32": "images/intelli32_v1.png",
@@ -29,7 +28,7 @@
     {
       "js": ["content.js"],
       "matches": ["<all_urls>"],
-      "css": ["style.css"]
+      "css": ["explicit-styling.css"]
     }
   ],
   "web_accessible_resources": [

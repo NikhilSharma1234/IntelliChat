@@ -1,0 +1,26 @@
+{
+    "namechrome": {
+        "message": "ইন্টেলি চ্যাট",
+        "description": "এক্সটেনশন নাম।"
+    },
+    "appdescription": {
+        "message": "একটি বুদ্ধিমত্তা সহযোগিতা বট।",
+        "description": "এক্সটেনশনের বর্ণনা, ওয়েব স্টোরে প্রদর্শিত হয়।"
+    },
+    "define": {
+        "message": "সংজ্ঞা",
+        "description": "বিভাগ সংজ্ঞা করুন।"
+    },
+    "summarize": {
+        "message": "সংক্ষেপ",
+        "description": "বিভাগ সংক্ষেপ করুন।"
+    },
+    "learn": {
+        "message": "শেখা",
+        "description": "শেখা বোতাম।"
+    },
+    "error": {
+        "message": "পূর্বাবস্থায় পেতে ব্যর্থ",
+        "description": "ত্রুটি বার্তা।"
+    }
+}

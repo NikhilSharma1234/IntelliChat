@@ -1,0 +1,26 @@
+{
+    "namechrome": {
+        "message": "इंटेलीचैट",
+        "description": "एक्सटेंशन का नाम।"
+    },
+    "appdescription": {
+        "message": "एक बुद्धिमान चैट बॉट।",
+        "description": "एक्सटेंशन का विवरण, वेब स्टोर में प्रदर्शित होता है।"
+    },
+    "define": {
+        "message": "परिभाषित करें",
+        "description": "क्षेत्र की परिभाषा करें।"
+    },
+    "summarize": {
+        "message": "संक्षेपित करें",
+        "description": "क्षेत्र को संक्षेपित करें।"
+    },
+    "learn": {
+        "message": "सीखें",
+        "description": "सीखने का बटन।"
+    },
+    "error": {
+        "message": "प्राप्त करने में विफल",
+        "description": "त्रुटि संदेश।"
+    }
+}

@@ -1,0 +1,26 @@
+{
+    "namechrome": {
+        "message": "智能聊天",
+        "description": "扩展名称。"
+    },
+    "appdescription": {
+        "message": "智能聊天机器人。",
+        "description": "扩展的描述，显示在网上商店中。"
+    },
+    "define": {
+        "message": "定义",
+        "description": "定义领域。"
+    },
+    "summarize": {
+        "message": "总结",
+        "description": "总结领域。"
+    },
+    "learn": {
+        "message": "学习",
+        "description": "学习按钮。"
+    },
+    "error": {
+        "message": "检索失败",
+        "description": "错误消息。"
+    }
+}

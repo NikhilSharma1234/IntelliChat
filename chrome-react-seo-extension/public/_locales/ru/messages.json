@@ -1,0 +1,26 @@
+{
+    "namechrome": {
+        "message": "ИнтеллиЧат",
+        "description": "Название расширения."
+    },
+    "appdescription": {
+        "message": "Интеллектуальный чат-бот.",
+        "description": "Описание расширения, отображаемое в веб-магазине."
+    },
+    "define": {
+        "message": "Определить",
+        "description": "Определить область."
+    },
+    "summarize": {
+        "message": "Суммировать",
+        "description": "Суммировать область."
+    },
+    "learn": {
+        "message": "Учиться",
+        "description": "Кнопка обучения."
+    },
+    "error": {
+        "message": "Ошибка при получении данных",
+        "description": "Сообщение об ошибке."
+    }
+}

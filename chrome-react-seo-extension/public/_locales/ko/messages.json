@@ -1,0 +1,26 @@
+{
+    "namechrome": {
+        "message": "인텔리챗",
+        "description": "확장 프로그램 이름."
+    },
+    "appdescription": {
+        "message": "지능형 챗봇.",
+        "description": "확장 프로그램 설명. 웹 스토어에 표시됩니다."
+    },
+    "define": {
+        "message": "정의",
+        "description": "영역을 정의합니다."
+    },
+    "summarize": {
+        "message": "요약",
+        "description": "영역을 요약합니다."
+    },
+    "learn": {
+        "message": "배우기",
+        "description": "학습 버튼."
+    },
+    "error": {
+        "message": "검색 실패",
+        "description": "오류 메시지."
+    }
+}
