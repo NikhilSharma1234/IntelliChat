@@ -29,7 +29,7 @@ async function createPopupBox(text) {
     if (existingPopupBox) {
         existingPopupBox.parentNode.removeChild(existingPopupBox);
     }
-    
+
     const popupBox = document.createElement('div');
     popupBox.setAttribute('id', 'popupBox');
 
@@ -63,17 +63,16 @@ async function createPopupBox(text) {
 }
 
 async function fetchTextResponse(query) {
-    const url = `https://justcors.com/tl_763c4ef/https://xse8e5ol9f.execute-api.us-east-1.amazonaws.com/prod?query=${encodeURIComponent(query)}`;
-    const apiKey = 'MXEbAK9Js81dzRGHKnJVd6rmmJqTADyv4OiARqoG'; // eventually change to something more secure...
+    const tokenObj = await chrome.runtime.sendMessage({ action: 'getToken'});
+    const url = `https://justcors.com/tl_58a52ae/https://xse8e5ol9f.execute-api.us-east-1.amazonaws.com/prod?query=${encodeURIComponent(query)}`; // eventually change to something more secure...
     try {
       const response = await fetch(url, {
         method: 'GET',
         mode: 'cors',
         headers: {
-          'x-api-key': apiKey,
+          'Authorization': tokenObj.token,
         },
       });
-      
       if (!response.ok) {
         throw new Error('Network response was not ok.');
       }
@@ -123,6 +122,7 @@ document.addEventListener('keydown', async function(event) {
     
         if (text.length > 0) {
             await createPopupBox(text);
+            chrome.runtime.sendMessage({ action: 'setTabId'});
             try {
                 chrome.runtime.sendMessage({ action: 'showText', text: text });
             } catch {
