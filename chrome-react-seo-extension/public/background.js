@@ -28,7 +28,7 @@ chrome.runtime.onInstalled.addListener(async () => {
   if (tab.url?.startsWith("chrome://")) return;
   console.log(tab)
   await chrome.scripting.insertCSS({
-    files: ["style.css"],
+    files: ["explicit-styling.css"],
     target: { tabId: tab.id },
   });
 });
