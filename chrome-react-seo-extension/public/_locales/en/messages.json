@@ -1,0 +1,26 @@
+{
+    "namechrome": {
+        "message": "IntelliChat",
+        "description": "Intelligent chat bot assistant."
+    },
+    "appdescription": {
+        "message": "An intelligent chat bot.",
+        "description": "The description of the extension, displayed in the web store."
+    },
+    "define": {
+        "message": "Define",
+        "description": "Define area."
+    },
+    "summarize": {
+        "message": "Summarize",
+        "description": "Summarize area."
+    }, 
+    "learn": {
+        "message": "Learn",
+        "description": "Learn button."
+    }, 
+    "error": {
+        "message": "Failed to retrieve",
+        "description": "Error message."
+    }
+}

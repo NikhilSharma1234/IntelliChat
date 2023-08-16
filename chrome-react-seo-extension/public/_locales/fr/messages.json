@@ -1,0 +1,26 @@
+{
+    "namechrome": {
+        "message": "IntelliChat",
+        "description": "Nom de l'extension."
+    },
+    "appdescription": {
+        "message": "Un chatbot intelligent.",
+        "description": "La description de l'extension, affichée dans la boutique en ligne."
+    },
+    "define": {
+        "message": "Définir",
+        "description": "Définir la zone."
+    },
+    "summarize": {
+        "message": "Résumer",
+        "description": "Résumer la zone."
+    }, 
+    "learn": {
+        "message": "Apprendre",
+        "description": "Bouton d'apprentissage."
+    }, 
+    "error": {
+        "message": "Échec de la récupération",
+        "description": "Message d'erreur."
+    }
+}

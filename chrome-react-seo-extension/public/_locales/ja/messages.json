@@ -1,0 +1,26 @@
+{
+    "namechrome": {
+        "message": "インテリチャット",
+        "description": "拡張機能の名前。"
+    },
+    "appdescription": {
+        "message": "知能型チャットボット。",
+        "description": "拡張機能の説明。ウェブストアに表示されます。"
+    },
+    "define": {
+        "message": "定義",
+        "description": "領域を定義します。"
+    },
+    "summarize": {
+        "message": "要約",
+        "description": "領域を要約します。"
+    },
+    "learn": {
+        "message": "学ぶ",
+        "description": "学習ボタン。"
+    },
+    "error": {
+        "message": "取得に失敗しました",
+        "description": "エラーメッセージ。"
+    }
+}

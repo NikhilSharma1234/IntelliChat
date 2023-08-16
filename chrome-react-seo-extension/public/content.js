@@ -4,7 +4,7 @@ function removePopupBox(text) {
     if (existingPopupBox) {
         existingPopupBox.parentNode.removeChild(existingPopupBox);
 
-        const elements = ['define', 'learnmore', 'summarize'];
+        const elements = ['define', 'learn', 'summarize'];
         for (const elementId of elements) {
             const elem = document.getElementById(elementId);
             if (elem) {
@@ -24,6 +24,7 @@ function scrollToBottom() {
 }
 
 async function createPopupBox(text) {
+    
     const existingPopupBox = document.getElementById('popupBox');
 
     if (existingPopupBox) {
@@ -42,7 +43,10 @@ async function createPopupBox(text) {
         if (buttonsWrapper) {
             const defineButton = buttonsWrapper.querySelector('#define');
             const summarizeButton = buttonsWrapper.querySelector('#summarize');
-            const learnMoreButton = buttonsWrapper.querySelector('#learnmore');
+            const learnMoreButton = buttonsWrapper.querySelector('#learn');
+            defineButton.textContent = chrome.i18n.getMessage("define");
+            summarizeButton.textContent = chrome.i18n.getMessage("summarize");
+            learnMoreButton.textContent = chrome.i18n.getMessage("learn");
 
             let halfText;
             if (text.length > 20) {
@@ -86,8 +90,10 @@ async function fetchTextResponse(query) {
 }  
 
 async function updateChat(event, text) {
+    const lang = chrome.i18n.getUILanguage();
     const popupWindow = document.getElementById('popupWindow');
-    const capitalizedEvent = event.charAt(0).toUpperCase() + event.slice(1)
+    let translated_event = chrome.i18n.getMessage(event)
+    const capitalizedEvent = translated_event.charAt(0).toUpperCase() + translated_event.slice(1)
     if (popupWindow.classList.contains('hidden')) {
         popupWindow.classList.remove('hidden'); // Remove hidden class, now that there are messages.
     }
@@ -96,13 +102,13 @@ async function updateChat(event, text) {
     let text_response;
     switch (event) {
         case 'define':
-            text_response = await fetchTextResponse(`What does this mean: ${text}`);
+            text_response = await fetchTextResponse(`What does this mean: ${text}?}`);
             break;
         case 'summarize':
-            text_response = await fetchTextResponse(`Summarize this: ${text}`);
+            text_response = await fetchTextResponse(`Summarize this: ${text}.`);
             break;
         case 'learn':
-            text_response = await fetchTextResponse(`Give me links regards this: ${text}`);
+            text_response = await fetchTextResponse(`Give me links regards this: ${text}?`);
             break;
         default:
             throw "err"
@@ -111,7 +117,7 @@ async function updateChat(event, text) {
     if (text_response) {
         popupWindow.insertAdjacentHTML('beforeend', `<div class="chat-item chat-item-right"><div class="font-xs chat-bubble chat-bubble-gray rounded-lg p-2">${text_response}</div></div>`);
     } else {
-        popupWindow.insertAdjacentHTML('beforeend', `<div class="chat-item chat-item-right"><div class="font-xs chat-bubble chat-bubble-gray rounded-lg p-2">Failed to fetch data.</div></div>`);
+        popupWindow.insertAdjacentHTML('beforeend', `<div class="chat-item chat-item-right"><div class="font-xs chat-bubble chat-bubble-gray rounded-lg p-2">${chrome.i18n.getMessage("error")}</div></div>`);
     }
     scrollToBottom();
 }
