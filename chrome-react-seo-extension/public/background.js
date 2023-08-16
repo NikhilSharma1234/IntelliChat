@@ -1,7 +1,15 @@
-chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
+chrome.runtime.onMessage.addListener(async function(request, sender, sendResponse) {
     if (request.action === 'showText') {
         console.log(request.text)
       }
+    else if (request.action === 'getToken') {
+      sendResponse({token: userToken});
+    }
+    else if (request.action === 'setTabId') {
+      const tab = await getCurrentTab();
+      extensionTabId = tab.id;
+      return
+    }
 });
 
 var contextMenuitem = {
@@ -9,6 +17,10 @@ var contextMenuitem = {
   title: "IntelliSearch on IntelliChat",
   contexts: ["selection"]
 }
+
+let userToken = '';
+
+let extensionTabId = '';
 
 chrome.runtime.onInstalled.addListener(async () => {
   const tab = await getCurrentTab();
@@ -23,6 +35,12 @@ chrome.runtime.onInstalled.addListener(async () => {
 
 chrome.contextMenus.onClicked.addListener(async (item, tab) => {
   console.log(item);
+})
+
+chrome.runtime.onMessageExternal.addListener((request, sender, sendResponse) => {
+  userToken = request.jwt;
+  chrome.tabs.update(extensionTabId, {selected: true});
+  sendResponse("OK")
 })
 
 async function getCurrentTab() {

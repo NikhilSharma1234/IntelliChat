@@ -5,6 +5,10 @@
   "background": {
     "service_worker": "background.js"
   },
+  "externally_connectable": {
+    "ids": ["*"],
+    "matches" : ["http://127.0.0.1:*/*"]
+  },
   "permissions": [
     "scripting",
     "activeTab",
