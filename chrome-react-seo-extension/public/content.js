@@ -64,7 +64,7 @@ async function createPopupBox(text) {
 
 async function fetchTextResponse(query) {
     const tokenObj = await chrome.runtime.sendMessage({ action: 'getToken'});
-    const url = `https://justcors.com/tl_58a52ae/https://xse8e5ol9f.execute-api.us-east-1.amazonaws.com/prod?query=${encodeURIComponent(query)}`; // eventually change to something more secure...
+    const url = `https://justcors.com/tl_46294e2/https://xse8e5ol9f.execute-api.us-east-1.amazonaws.com/prod?query=${encodeURIComponent(query)}`; // eventually change to something more secure...
     try {
       const response = await fetch(url, {
         method: 'GET',
